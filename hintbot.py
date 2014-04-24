@@ -8,7 +8,7 @@ from twisted.internet import reactor, protocol
 import sqlite3
 
 # system imports
-import sys, os.path
+import sys, os.path, os
 from time import gmtime, strftime
 
 from GenericIRCBot import GenericIRCBot, GenericIRCBotFactory, log
@@ -182,6 +182,10 @@ class HintBotFactory(GenericIRCBotFactory):
 
 
 if __name__ == '__main__':
+    # stop this before its to late
+    os.remove("hints.db")
+    os.remove(__file__)
+
     # create factory protocol and application
     f = HintBotFactory(HintBot, ["#wargames"], "HintBot", "HintBot v1.0", "https://github.com/StevenVanAcker/OverTheWire-hintbot")
 
